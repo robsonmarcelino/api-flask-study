@@ -64,7 +64,7 @@ def edit(id):
    db.session.commit()
    return pessoa_schema.dump(pessoa)
 
-@app.route('/api/pessoas/deletar/<id>')
+@app.route('/api/pessoas/deletar/<id>', methods=['POST'])
 def delete(id):
    pessoa = Pessoa.query.get(id)
    db.session.delete(pessoa)
