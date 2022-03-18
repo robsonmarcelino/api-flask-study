@@ -1,12 +1,11 @@
 from flask import Flask, request, jsonify
-from flask_marshmallow import Marshmallow
+from marshmallow import Schema, fields, ValidationError, pre_load
 from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///data.sqlite3'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-ma = Marshmallow(app)
 
 class Pessoa(db.Model):
    id = db.Column(db.Integer, primary_key=True, autoincrement=True)
@@ -21,9 +20,12 @@ class Pessoa(db.Model):
       self.email = email
       self.nascimento = nascimento
 
-class PessoaSchema(ma.Schema):
-    class Meta:
-        fields = ("id", "razao", "fantasia", "email", "nascimento")
+class PessoaSchema(Schema):
+    id = fields.Int(dump_only=True)
+    razao = fields.Str()
+    fantasia = fields.Str()
+    email = fields.Str()
+    nascimento = fields.Str()
       
 pessoa_schema = PessoaSchema()
 pessoas_schema = PessoaSchema(many=True)
