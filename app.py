@@ -33,7 +33,9 @@ pessoas_schema = PessoaSchema(many=True)
 @app.route('/api/pessoas')
 def index():
    pessoas = Pessoa.query.all()
-   return pessoas_schema.dump(pessoas)
+   result = pessoas_schema.dump(pessoas)
+   return {"Pessoas": result}
+
 
 @app.route('/api/pessoas/<id>')
 def pessoa_pelo_id(id):
