@@ -69,7 +69,7 @@ def delete(id):
    pessoa = Pessoa.query.get(id)
    db.session.delete(pessoa)
    db.session.commit()
-   return jsonify("deleted")
+   return jsonify({"deleted": "success"})
 
 if __name__ == '__main__':
    db.create_all()
