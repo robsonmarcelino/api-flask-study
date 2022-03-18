@@ -1,3 +1,4 @@
+import os
 from flask import Flask, request, jsonify
 from marshmallow import Schema, fields, ValidationError, pre_load
 from flask_sqlalchemy import SQLAlchemy
@@ -72,4 +73,5 @@ def delete(id):
 
 if __name__ == '__main__':
    db.create_all()
-   app.run(debug=True)
+   port = int(os.environ.get("PORT", 5000))
+   app.run(host='0.0.0.0', port=port, debug=True)    
