@@ -54,7 +54,7 @@ def new():
     db.session.commit()
     return pessoa_schema.dump(pessoa)
 
-@app.route('/api/pessoas/editar/<id>', methods=['PUT'])
+@app.route('/api/pessoas/editar/<id>', methods=['POST'])
 def edit(id):
    pessoa = Pessoa.query.get(id)
    pessoa.razao = request.form['razao']
