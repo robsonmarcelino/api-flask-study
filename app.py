@@ -57,10 +57,10 @@ def new():
 @app.route('/api/pessoas/editar/<id>', methods=['POST'])
 def edit(id):
    pessoa = Pessoa.query.get(id)
-   pessoa.razao = request.form['razao']
-   pessoa.fantasia = request.form['fantasia']
-   pessoa.email = request.form['email']
-   pessoa.nascimento = request.form['nascimento']
+   pessoa.razao = request.json['razao']
+   pessoa.fantasia = request.json['fantasia']
+   pessoa.email = request.json['email']
+   pessoa.nascimento = request.json['nascimento']
    db.session.commit()
    return pessoa_schema.dump(pessoa)
 
