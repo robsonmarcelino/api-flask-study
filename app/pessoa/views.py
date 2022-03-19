@@ -20,7 +20,7 @@ pessoas_schema = PessoaSchema(many=True)
 @pessoa.route('/')
 @pessoa.route('/home')
 def home():
-    return "Seja Bem vindo a API."
+    return "Seja Bem vindo a API!"
  
 class PessoaView(MethodView):
  
